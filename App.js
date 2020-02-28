@@ -16,6 +16,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
+/** Start import screen */
+import Splash from "./src/screens/splash";
+/** End import screen */
 
 
 
@@ -47,8 +50,10 @@ function DrawerHome() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="DrawerHome" component={DrawerHome} />
+
+      <Stack.Navigator headerMode={"none"} initialRouteName="splash">
+        <Stack.Screen name="splash" component={Splash} />
+        <Stack.Screen name="Dhome" component={DrawerHome} />
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
