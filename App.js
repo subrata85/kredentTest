@@ -18,33 +18,34 @@ const Drawer = createDrawerNavigator();
 
 /** Start import screen */
 import Splash from "./src/screens/splash";
+import Login from "./src/screens/user/login"
 /** End import screen */
 
 
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
+// function HomeScreen() {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Home Screen</Text>
+//     </View>
+//   );
+// }
 
-function HomeScreen1() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen111</Text>
-    </View>
-  );
-}
+// function HomeScreen1() {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Home Screen111</Text>
+//     </View>
+//   );
+// }
 
-function DrawerHome() {
-  return (
-    <Drawer.Navigator headerMode={""}>
-      <Drawer.Screen name="Home" component={HomeScreen1} />
-    </Drawer.Navigator>
-  );
-}
+// function DrawerHome() {
+//   return (
+//     <Drawer.Navigator headerMode={""}>
+//       <Drawer.Screen name="Home" component={HomeScreen1} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 
 function App() {
@@ -53,8 +54,9 @@ function App() {
 
       <Stack.Navigator headerMode={"none"} initialRouteName="splash">
         <Stack.Screen name="splash" component={Splash} />
-        <Stack.Screen name="Dhome" component={DrawerHome} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="login" component={Login} />
+        {/* <Stack.Screen name="Dhome" component={DrawerHome} />
+        <Stack.Screen name="Home" component={HomeScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

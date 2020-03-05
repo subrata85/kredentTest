@@ -4,6 +4,10 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 class Splash extends React.Component {
+
+    componentDidMount() {
+        this.props.navigation.navigate("login")
+    }
     render() {
         return (
             <View>
