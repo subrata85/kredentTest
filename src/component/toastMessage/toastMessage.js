@@ -1,6 +1,6 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Toast} from 'native-base';
+import {Animated, Text, View} from 'react-native';
+import {Toast, Button} from 'native-base';
 
 const ToastMessage = props => {
   return (

@@ -1,27 +1,26 @@
 const defaultState = {
-    userData: {}
+  createdUser: [],
+  message: '',
+  messageType: '',
 };
 
 export default function reducer(state = defaultState, action) {
-    switch (action.type) {
-        case "RESET_MESSAGES":
-            return {
-                ...state,
-                messageType: "",
-                message: ""
-            };
-        case "ERROR":
-            return {
-                ...state,
-                messageType: "error",
-                message: action.message
-            };
-        case "USER_DATA":
-            return {
-                ...state,
-                userData: action.data
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'RESET_USER_MESSAGE_SUCCESS':
+      return {
+        ...state,
+        messageType: '',
+        message: '',
+      };
+    case 'GET_USER_DATA_SUCCESS':
+      return {
+        ...state,
+        createdUser: [...state.createdUser, action.data],
+        message: 'User created success',
+        messageType: 'success',
+      };
+
+    default:
+      return state;
+  }
 }
