@@ -73,7 +73,6 @@ class Login extends React.Component {
 
   render() {
     const {email, password, disableForm} = this.state;
-    console.log('registeredUser', this.state.registeredUser);
     return (
       <Container>
         <View style={styles.headeView}>

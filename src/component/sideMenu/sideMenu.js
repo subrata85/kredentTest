@@ -42,6 +42,14 @@ class SideMenu extends Component {
           <ListItem icon style={styles.ListStyle}>
             <Left />
             <Body>
+              <TouchableOpacity onPress={() => this.navigateToPage('home')}>
+                <Text style={styles.text}>Home</Text>
+              </TouchableOpacity>
+            </Body>
+          </ListItem>
+          <ListItem icon style={styles.ListStyle}>
+            <Left />
+            <Body>
               <TouchableOpacity onPress={() => this.navigateToPage('profile')}>
                 <Text style={styles.text}>Profile</Text>
               </TouchableOpacity>
@@ -52,7 +60,16 @@ class SideMenu extends Component {
             <Body>
               <TouchableOpacity
                 onPress={() => this.navigateToPage('commentPost')}>
-                <Text style={styles.text}>Comment & Post</Text>
+                <Text style={styles.text}>Add Comment & Post</Text>
+              </TouchableOpacity>
+            </Body>
+          </ListItem>
+          <ListItem icon style={styles.ListStyle}>
+            <Left />
+            <Body>
+              <TouchableOpacity
+                onPress={() => this.navigateToPage('showCommentPost')}>
+                <Text style={styles.text}>Show Comment & Post</Text>
               </TouchableOpacity>
             </Body>
           </ListItem>

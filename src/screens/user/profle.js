@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  AsyncStorage,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
-import {Container, Content, Card, CardItem, Body, Drawer} from 'native-base';
+import {StyleSheet, Text, View} from 'react-native';
+import {Container, Content, Drawer} from 'native-base';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
