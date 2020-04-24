@@ -56,7 +56,6 @@ class Login extends React.Component {
   };
 
   UNSAFE_componentWillReceiveProps(newProps) {
-    console.log('login', newProps);
     if (newProps.userData.createdUser.length > 0) {
       this.setState({
         registeredUser: newProps.userData.createdUser,

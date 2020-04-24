@@ -18,16 +18,19 @@ const Stack = createStackNavigator();
 import Splash from './src/screens/splash';
 import Login from './src/screens/user/login';
 import Registration from './src/screens/user/registration';
+
+import Home from './src/screens/home/home';
 /** End import screen */
 
 function App() {
   return (
     <Root>
       <NavigationContainer>
-        <Stack.Navigator headerMode={'none'} initialRouteName="login">
+        <Stack.Navigator headerMode={'none'} initialRouteName="home">
           <Stack.Screen name="splash" component={Splash} />
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="registration" component={Registration} />
+          <Stack.Screen name="home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
     </Root>
