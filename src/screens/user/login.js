@@ -63,6 +63,11 @@ class Login extends React.Component {
     }
     if (newProps.userData.loginSuccess.length > 0) {
       this.props.navigation.navigate('home');
+    } else {
+      ToastMessage({
+        message: 'Please Registar First',
+        type: 'warning',
+      });
     }
   }
 

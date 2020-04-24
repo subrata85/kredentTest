@@ -6,11 +6,9 @@ import {
   TouchableOpacity,
   View,
   Alert,
-  AsyncStorage,
-  Image,
 } from 'react-native';
 
-import {ListItem, Left, Right, Button, Switch, Body} from 'native-base';
+import {ListItem, Left, Body} from 'native-base';
 
 class SideMenu extends Component {
   constructor(props) {
@@ -19,10 +17,11 @@ class SideMenu extends Component {
   }
 
   onPressLogout = () => {
-    Alert.alert('LogOut confirmation', 'Do you want to log out?', [
-      {text: 'No', onPress: () => (No = 'no')},
+    Alert.alert('Logout', 'Do you want to logout ?', [
+      {text: 'No', onPress: () => false},
       {text: 'Yes', onPress: () => this.logOutRequest()},
     ]);
+    return true;
   };
 
   logOutRequest = () => {
@@ -45,6 +44,15 @@ class SideMenu extends Component {
             <Body>
               <TouchableOpacity onPress={() => this.navigateToPage('profile')}>
                 <Text style={styles.text}>Profile</Text>
+              </TouchableOpacity>
+            </Body>
+          </ListItem>
+          <ListItem icon style={styles.ListStyle}>
+            <Left />
+            <Body>
+              <TouchableOpacity
+                onPress={() => this.navigateToPage('commentPost')}>
+                <Text style={styles.text}>Comment & Post</Text>
               </TouchableOpacity>
             </Body>
           </ListItem>
