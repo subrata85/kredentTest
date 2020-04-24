@@ -17,7 +17,7 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         loginSuccess: state.createdUser.map(list =>
-          list.email === action.data.email ? 'login' : 'notLogin',
+          list.email === action.data.email ? list : null,
         ),
       };
 

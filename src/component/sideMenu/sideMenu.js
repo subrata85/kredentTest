@@ -26,16 +26,11 @@ class SideMenu extends Component {
   };
 
   logOutRequest = () => {
-    this.props.onClose();
-    api.logout().then(d => {
-      //AsyncStorage.clear();
-      AsyncStorage.removeItem('userId');
-      AsyncStorage.removeItem('firstName');
-      AsyncStorage.removeItem('lastName');
-      AsyncStorage.removeItem('email');
-      AsyncStorage.removeItem('phoneNo');
-      this.props.navigation.navigate('loginScreen');
-    });
+    this.props.navigation.navigate('login');
+  };
+
+  navigateToPage = pageName => {
+    this.props.navigation.navigate(pageName);
   };
 
   render() {
@@ -48,8 +43,16 @@ class SideMenu extends Component {
           <ListItem icon style={styles.ListStyle}>
             <Left />
             <Body>
-              <TouchableOpacity onPress={() => this.goToHome()}>
-                <Text style={styles.text}>Home</Text>
+              <TouchableOpacity onPress={() => this.navigateToPage('profile')}>
+                <Text style={styles.text}>Profile</Text>
+              </TouchableOpacity>
+            </Body>
+          </ListItem>
+          <ListItem icon style={styles.ListStyle}>
+            <Left />
+            <Body>
+              <TouchableOpacity onPress={() => this.onPressLogout()}>
+                <Text style={styles.text}>Logout</Text>
               </TouchableOpacity>
             </Body>
           </ListItem>

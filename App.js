@@ -20,6 +20,7 @@ import Login from './src/screens/user/login';
 import Registration from './src/screens/user/registration';
 
 import Home from './src/screens/home/home';
+import Profile from './src/screens/user/profle';
 /** End import screen */
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="registration" component={Registration} />
           <Stack.Screen name="home" component={Home} />
+          <Stack.Screen name="profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
     </Root>
