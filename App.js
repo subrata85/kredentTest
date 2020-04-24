@@ -24,7 +24,7 @@ function App() {
   return (
     <Root>
       <NavigationContainer>
-        <Stack.Navigator headerMode={'none'} initialRouteName="registration">
+        <Stack.Navigator headerMode={'none'} initialRouteName="login">
           <Stack.Screen name="splash" component={Splash} />
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="registration" component={Registration} />

@@ -206,6 +206,14 @@ class Registration extends React.Component {
                 disableForm={disableForm}
               />
             </View>
+            <View style={{alignItems: 'center', marginTop: 20}}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate('login');
+                }}>
+                <Text>Login</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </Content>
       </Container>

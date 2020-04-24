@@ -1,71 +1,181 @@
-import React from "react";
-import { StyleSheet, View, Text, StatusBar, ScrollView, TouchableOpacity, Image } from "react-native";
-import { Toast } from "native-base";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from 'react-native';
+import {Container, Content, Item, Input, Toast, Form} from 'native-base';
+import ToastMessage from '../../component/toastMessage/toastMessage';
+import ButtonComponent from '../../component/button/button';
 
-//import action
-import { userLogin } from "../../reduxModules/actions/index"
-
+import {userLogin} from '../../reduxModules/actions/index';
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: "",
-            password: "",
-            isChecked: false,
-            disableForm: false
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: 'a@a.com',
+      password: '1',
+      disableForm: false,
+      registeredUser: [],
+    };
+  }
+
+  onLogin = () => {
+    const {email, password, registeredUser} = this.state;
+    const regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (email === '' || regEmail.test(email) !== true) {
+      ToastMessage({
+        message: 'Enter Valid Email',
+        type: 'warning',
+      });
+    } else if (password === '') {
+      ToastMessage({
+        message: 'Enter Valid Password',
+        type: 'warning',
+      });
+    } else {
+      let data = {
+        email: email,
+        password: password,
+      };
+      this.props.userLogin(data);
     }
+  };
 
-    onLogin = () => {
-        let data = {
-            email: "email",
-            password: "password"
-        }
-        this.props.userLogin(data);
+  clearState = () => {
+    this.setState({
+      email: '',
+      password: '',
+    });
+  };
 
-
+  UNSAFE_componentWillReceiveProps(newProps) {
+    console.log('login', newProps);
+    if (newProps.userData.createdUser.length > 0) {
+      this.setState({
+        registeredUser: newProps.userData.createdUser,
+      });
     }
+    if (newProps.userData.loginSuccess.length > 0) {
+      alert('login success');
+    }
+  }
 
-    render() {
-        const { email, password, isChecked, disableForm } = this.state;
-        return (
-            <View style={styles.mainView} pointerEvents={disableForm ? 'none' : 'auto'}>
-                <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-                <ScrollView keyboardShouldPersistTaps={"always"}>
-                    <TouchableOpacity style={styles.btnLogin} onPress={() => this.onLogin()}>
-                        <Text style={styles.btnTxtLogin}>Login</Text>
-                    </TouchableOpacity>
-                </ScrollView>
+  render() {
+    const {email, password, disableForm} = this.state;
+    console.log('registeredUser', this.state.registeredUser);
+    return (
+      <Container>
+        <View style={styles.headeView}>
+          <Text style={styles.titleTxt}>Login</Text>
+        </View>
+        <Content padder style={styles.container}>
+          <Item rounded style={styles.itemView}>
+            <Input
+              placeholder="Email Address"
+              returnKeyType="go"
+              keyboardType="email-address"
+              value={email}
+              autoCorrect={true}
+              onChangeText={email => {
+                this.setState({email: email});
+              }}
+              onSubmitEditing={() => {
+                this.onPressLogin();
+              }}
+            />
+          </Item>
+          <Item rounded style={styles.itemView}>
+            <Input
+              placeholder="Password"
+              secureTextEntry={true}
+              returnKeyType="go"
+              value={password}
+              onChangeText={password => {
+                this.setState({password: password});
+              }}
+              onSubmitEditing={() => {
+                this.onPressLogin();
+              }}
+            />
+          </Item>
+          <View style={styles.buttonView}>
+            <View style={styles.buttonView}>
+              <ButtonComponent
+                text={'LOGIN'}
+                btnAction={() => this.onLogin()}
+                disableForm={disableForm}
+              />
             </View>
-        )
-    }
+
+            <View style={{alignItems: 'center', marginTop: 20}}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate('registration');
+                }}>
+                <Text>CREATE NEW ACCOUNT</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Content>
+      </Container>
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        // messageType: state.userStore.messageType,
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        userLogin
-    }, dispatch)
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+const mapStateToProps = state => {
+  return {
+    userData: state.userStore,
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      userLogin,
+    },
+    dispatch,
+  );
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);
 
 const styles = StyleSheet.create({
-    mainView: { marginHorizontal: 10, marginTop: 50 },
-
-    txtColor: { color: "#E4801D" },
-
-
-    btnLogin: { backgroundColor: "#E4801D", padding: 20, marginTop: 25, alignItems: "center", justifyContent: "center" },
-    btnTxtLogin: { color: "#ffffff", fontSize: 18, fontWeight: "bold" },
-
-
-})
+  container: {
+    backgroundColor: '#f2fcff',
+  },
+  headeView: {alignItems: 'center', margin: 20},
+  titleTxt: {fontSize: 20, fontWeight: 'bold'},
+  itemView: {
+    marginTop: 20,
+    backgroundColor: '#ffffff',
+    padding: 10,
+  },
+  buttonView: {
+    marginTop: 20,
+  },
+  buttonStyle: {
+    padding: 20,
+    width: 350,
+    borderRadius: 30,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  signInButton: {
+    backgroundColor: '#2cc2ea',
+  },
+  singUpButton: {
+    backgroundColor: '#4de9c9',
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#ffffff',
+  },
+});

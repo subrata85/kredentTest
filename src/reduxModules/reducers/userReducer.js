@@ -2,6 +2,7 @@ const defaultState = {
   createdUser: [],
   message: '',
   messageType: '',
+  loginSuccess: '',
 };
 
 export default function reducer(state = defaultState, action) {
@@ -12,6 +13,14 @@ export default function reducer(state = defaultState, action) {
         messageType: '',
         message: '',
       };
+    case 'USER_LOGIN_DATA':
+      return {
+        ...state,
+        loginSuccess: state.createdUser.map(list =>
+          list.email === action.data.email ? 'login' : 'notLogin',
+        ),
+      };
+
     case 'GET_USER_DATA_SUCCESS':
       return {
         ...state,
