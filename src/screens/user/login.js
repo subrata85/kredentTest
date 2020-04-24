@@ -62,7 +62,7 @@ class Login extends React.Component {
       });
     }
     if (newProps.userData.loginSuccess.length > 0) {
-      alert('login success');
+      this.props.navigation.navigate('home');
     }
   }
 
