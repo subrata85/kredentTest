@@ -1,4 +1,4 @@
-package com.babygym;
+package com.kredenttest;
 
 import android.app.Application;
 import android.content.Context;

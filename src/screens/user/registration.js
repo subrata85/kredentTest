@@ -20,12 +20,12 @@ class Registration extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: 'a',
-      lastName: 'a',
-      email: 'a@a.com',
-      phoneNo: '1',
-      password: '1',
-      confirmPassword: '1',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNo: '',
+      password: '',
+      confirmPassword: '',
       disableForm: false,
     };
   }

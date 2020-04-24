@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'BabyGym' do
-  # Pods for BabyGym
+target 'KredentTest' do
+  # Pods for KredentTest
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -36,7 +36,7 @@ target 'BabyGym' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
-  target 'BabyGymTests' do
+  target 'KredentTestTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -44,10 +44,10 @@ target 'BabyGym' do
   use_native_modules!
 end
 
-target 'BabyGym-tvOS' do
-  # Pods for BabyGym-tvOS
+target 'KredentTest-tvOS' do
+  # Pods for KredentTest-tvOS
 
-  target 'BabyGym-tvOSTests' do
+  target 'KredentTest-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
